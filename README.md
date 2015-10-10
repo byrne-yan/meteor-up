@@ -146,6 +146,15 @@ When building the meteor app, we can invoke few options. So, you can mention the
 "buildOptions": {
   // build with the debug mode on
   "debug": true,
+  // Builds the server for a different architecture than your
+  //                         developer machine's architecture. Valid architectures
+  //                         include os.osx.x86_64, os.linux.x86_64, and
+  //                         os.linux.x86_32.
+  "architecture": "os.linux.x86_64",
+  //Location where mobile builds connect to the Meteor server.
+  //                        Defaults to localhost:3000. Can include a URL scheme
+  //                        (for example, --server=https://example.com:443)
+  "server": "https://example.com:443",
   // mobile setting for cordova apps
   "mobileSettings": {
     "public": {
