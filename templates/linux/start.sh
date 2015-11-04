@@ -6,6 +6,7 @@ BUNDLE_PATH=$APP_PATH/current
 ENV_FILE=$APP_PATH/config/env.list
 PORT=<%= port %>
 USE_LOCAL_MONGO=<%= useLocalMongo? "1" : "0" %>
+RELEASE_PATH=<%= releasePath %>
 
 # Remove previous version of the app, if exists
 docker rm -f $APPNAME
@@ -24,6 +25,7 @@ if [ "$USE_LOCAL_MONGO" == "1" ]; then
     --restart=always \
     --publish=$PORT:80 \
     --volume=$BUNDLE_PATH:/bundle \
+    --volume=$RELEASE_PATH:$RELEASE_PATH \
     --env-file=$ENV_FILE \
     --link=mongodb:mongodb \
     --hostname="$HOSTNAME-$APPNAME" \
@@ -36,6 +38,7 @@ else
     --restart=always \
     --publish=$PORT:80 \
     --volume=$BUNDLE_PATH:/bundle \
+    --volume=$RELEASE_PATH:$RELEASE_PATH \
     --hostname="$HOSTNAME-$APPNAME" \
     --env-file=$ENV_FILE \
     --name=$APPNAME \
